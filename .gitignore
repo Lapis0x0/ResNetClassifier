@@ -1,2 +1,3 @@
 /models
 *model.pth
+*.DS_Store

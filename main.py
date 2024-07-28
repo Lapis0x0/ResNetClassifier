@@ -34,7 +34,7 @@ def main():
         print("Model file not found. Starting model training...")
 
         # 训练模型
-        num_epochs = 10
+        num_epochs = 20
         trained_model, loss_history = train_model(data_path, model_save_path, num_epochs)
         print("Model training completed.")
         print(f"Final loss: {loss_history[-1]}")

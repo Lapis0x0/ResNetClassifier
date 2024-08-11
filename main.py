@@ -2,8 +2,8 @@
 
 from src.train_model import train_model
 from src.classify_model import run_classification
+from src.remove_duplicates import remove_duplicates  # 导入去重模块
 import os
-
 
 def create_data_directories(): # 检测是否存在data文件夹，若不存在则创建data及其子文件夹
 
@@ -49,6 +49,29 @@ def main():
     print("Starting image classification...")
     run_classification(data_path, model_save_path, test_folder, output_folder)
     print("Image classification completed.")
+    
+    # 调用去重函数
+    print("Removing duplicate images...")
+    remove_duplicates(output_folder)
+    print("Duplicate removal completed.")
+    
+    # 新增功能：询问是否清空文件夹
+    clear_folder = input("Do you want to clear 'data/需要分类的图片'? Enter 1 for Yes, 0 for No: ")
+    if clear_folder == '1':
+        test_folder = 'data/需要分类的图片'
+        for filename in os.listdir(test_folder):
+            file_path = os.path.join(test_folder, filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    os.rmdir(file_path)
+            except Exception as e:
+                print(f'Failed to delete {file_path}. Reason: {e}')
+        print("'data/需要分类的图片' has been cleared.")
+    else:
+        print("'data/需要分类的图片' has not been cleared.")
+
 
 if __name__ == "__main__":
     main()

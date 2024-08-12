@@ -30,16 +30,24 @@ def main():
     model_save_path = 'data/models/model.pth'
     data_path = 'data/dataset'
     # 检查模型文件是否存在
-    if not os.path.exists(model_save_path):
+    if os.path.exists(model_save_path):
+        retrain_model = input("Model file found. Do you want to retrain the model? Enter 1 for Yes, 0 for No: ")
+        if retrain_model == '1':
+            print("Starting model retraining...")
+            # 重新训练模型
+            num_epochs = 20
+            trained_model, loss_history = train_model(data_path, model_save_path, num_epochs)
+            print("Model retraining completed.")
+            print(f"Final loss: {loss_history[-1]}")
+        else:
+            print("Using existing model.")
+    else:
         print("Model file not found. Starting model training...")
-
         # 训练模型
         num_epochs = 20
         trained_model, loss_history = train_model(data_path, model_save_path, num_epochs)
         print("Model training completed.")
         print(f"Final loss: {loss_history[-1]}")
-    else:
-        print("Model file found. Skipping training.")
 
 
     # 运行分类

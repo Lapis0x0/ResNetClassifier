@@ -31,40 +31,40 @@ def main():
     data_path = 'data/dataset'
     # 检查模型文件是否存在
     if os.path.exists(model_save_path):
-        retrain_model = input("Model file found. Do you want to retrain the model? Enter 1 for Yes, 0 for No: ")
+        retrain_model = input("模型文件已存在，您想要重新训练模型吗？输入 1 表示是，输入 0 表示否:")
         if retrain_model == '1':
-            print("Starting model retraining...")
+            print("开始重新训练模型...")
             # 重新训练模型
             num_epochs = 20
             trained_model, loss_history = train_model(data_path, model_save_path, num_epochs)
-            print("Model retraining completed.")
-            print(f"Final loss: {loss_history[-1]}")
+            print("模型重新训练完成。")
+            print(f"最终损失: {loss_history[-1]}")
         else:
             print("Using existing model.")
     else:
-        print("Model file not found. Starting model training...")
+        print("模型文件未找到，开始训练模型...")
         # 训练模型
         num_epochs = 20
         trained_model, loss_history = train_model(data_path, model_save_path, num_epochs)
-        print("Model training completed.")
-        print(f"Final loss: {loss_history[-1]}")
+        print("模型训练完成。")
+        print(f"最终损失: {loss_history[-1]}")
 
 
     # 运行分类
     test_folder = 'data/需要分类的图片'
     output_folder = 'data/分类结果'
 
-    print("Starting image classification...")
+    print("开始图片分类...")
     run_classification(data_path, model_save_path, test_folder, output_folder)
-    print("Image classification completed.")
+    print("图片分类完成。")
     
     # 调用去重函数
-    print("Removing duplicate images...")
+    print("开始去重...")
     remove_duplicates(output_folder)
-    print("Duplicate removal completed.")
+    print("去重完成。")
     
     # 新增功能：询问是否清空文件夹
-    clear_folder = input("Do you want to clear 'data/需要分类的图片'? Enter 1 for Yes, 0 for No: ")
+    clear_folder = input("是否清空'data/需要分类的图片'文件夹? 输入 1 表示是，输入 0 表示否: ")
     if clear_folder == '1':
         test_folder = 'data/需要分类的图片'
         for filename in os.listdir(test_folder):

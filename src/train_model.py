@@ -75,6 +75,3 @@ def train_model(data_path, model_save_path, num_epochs=10):
     plt.show()
 
     return model, loss_values
-
-if __name__ == "__main__":
-    train_model('data/dataset', 'data/models/model.pth')

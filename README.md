@@ -1,7 +1,5 @@
 [中文文档](https://github.com/Lapis0x0/ResNetClassifier/blob/main/README_zh_CN.md/) | [English Document](https://github.com/Lapis0x0/ResNetClassifier/blob/main/README.md) 
 
-Here's the translated document:
-
 # ResNetClassifier
 A demo model based on ResNet for classifying image collections.
 

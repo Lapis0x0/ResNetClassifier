@@ -1,26 +1,30 @@
+[中文文档](https://github.com/Lapis0x0/ResNetClassifier/blob/main/README_zh_CN.md/) | [English Document](https://github.com/Lapis0x0/ResNetClassifier/blob/main/README.md) 
+
+Here's the translated document:
+
 # ResNetClassifier
-自己拿来分类图库的一个基于ResNet训练的模型demo
+A demo model based on ResNet for classifying image collections.
 
-# 一、须知
-在首次启动main.py时，会自动检测本地是否存在data文件夹，若不存在，则会自动创建data文件夹，并在其目录下创建分类结果、需要分类的图片、dataset和models四个子文件夹。
-执行main.py后，会进行图片分类，分类结束后会自动对分类结果进行去重，删除重复图片。
+# 1. Important Information
+When you run `main.py` for the first time, the program will automatically check if there is a `data` folder in the local directory. If it does not exist, the program will create the `data` folder and four subfolders within it: `classification_results`, `images_to_classify`, `dataset`, and `models`. After executing `main.py`, the program will classify images and then automatically deduplicate the classification results by deleting any duplicate images.
 
-* 分类结果：执行分类程序后对“需要分类的图片”的分类结果。
-* 需要分类的图片：用户需要分类的图片。
-* dataset：训练数据集。
-* models：预训练模型，和用户训练的模型
+* Classification Results: The results of classifying the "images to be classified" after executing the classification program.
+* Images to Classify: The images that the user wants to classify.
+* Dataset: The training dataset.
+* Models: Pre-trained models and models trained by the user.
 
-# 二、训练模型
-如果你想要训练一个自己的图片分类模型，请在data/dataset文件夹下创建对应个文件夹，文件夹的名字就是你的分类标签，然后将你的训练数据（图片）放在这个文件夹里。
-例如：dataset里有五个文件夹，分别是a.美少女,b.风景,c.动物,d.美食,e.游戏，那么你的训练图片就应该放到各自对应的文件夹中。
+# 2. Training the Model
+If you want to train your own image classification model, create the corresponding folders under the `data/dataset` directory. The folder names will serve as your classification labels. Then, place your training data (images) into these folders. 
 
-在data/dataset文件夹下创建好你的训练数据后，运行main.py，程序会自动在预训练模型的基础上开始训练模型。
+For example, if there are five folders in the `dataset` directory named `a. Anime Girls`, `b. Landscapes`, `c. Animals`, `d. Food`, and `e. Games`, your training images should be placed in their respective folders.
 
-由于GitHub repo的最大储存限制，对应的预训练ResNet模型文件太大无法上传，我放了一份在我自己的网盘里：https://data.lapis.cafe/api/raw?path=/03.%E6%96%87%E4%BB%B6%E5%88%86%E4%BA%AB/resnet18-f37072fd.pth
+After setting up your training data in the `data/dataset` directory, run `main.py`. The program will automatically start training the model based on the pre-trained model.
 
-当然，你也可以自行下载模型文件，默认会将预训练模型放在`./data/models/resnet18-f37072fd.pth`，
+Due to the storage limits of GitHub repositories, the pre-trained ResNet model file is too large to upload. I have placed a copy in my own cloud storage: [https://data.lapis.cafe/api/raw?path=/03.%E6%96%87%E4%BB%B6%E5%88%86%E4%BA%AB/resnet18-f37072fd.pth](https://data.lapis.cafe/api/raw?path=/03.%E6%96%87%E4%BB%B6%E5%88%86%E4%BA%AB/resnet18-f37072fd.pth).
 
-模型训练结束后，会自动将模型保存到`./data/models/`文件夹下，文件名格式为`model.pth`，并绘制并保存loss值图表到根目录下，文件名格式为`training_loss.png`。
+Of course, you can also download the model file yourself. By default, the pre-trained model should be placed at `./data/models/resnet18-f37072fd.pth`.
 
-# 三、开始分类
-当你自己的模型训练好之后，可以运行main.py，程序会自动开始分类，基于你训练好的模型进行分类后，会执行一遍去重操作，删除重复图片。分类的结果可以在`./data/分类结果/`文件夹下查看。
+Once model training is complete, the trained model will be automatically saved to the `./data/models/` folder. The file will be named `model.pth`, and a plot of the loss values will be generated and saved in the root directory as `training_loss.png`.
+
+# 3. Starting the Classification
+After your custom model has been trained, you can run `main.py`. The program will automatically start the classification process using the model you've trained. Once classification is complete, a deduplication operation will be performed to delete duplicate images. You can view the classification results in the `./data/classification_results/` folder.

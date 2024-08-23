@@ -4,3 +4,5 @@
 /src/__pycache__/
 .DS_Store
 training_loss.png
+run.sh
+venv/
